@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pollution Simulator</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0c10;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      color: #66fcf1;
+    }
+
+    #map {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      background: linear-gradient(#202833, #1f2833);
+      border: 2px solid #45a29e;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .satellite {
+      width: 20px;
+      height: 20px;
+      background: yellow;
+      border-radius: 50%;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    .pollution {
+      width: 30px;
+      height: 30px;
+      background: rgba(255, 0, 0, 0.6);
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #45a29e;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #66fcf1;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pollution Mapping Simulator</h1>
+  <div id="map">
+    <div class="satellite" id="satellite"></div>
+    <div class="pollution" style="top: 200px; left: 100px;"></div>
+    <div class="pollution" style="top: 300px; left: 250px;"></div>
+  </div>
+  <button onclick="moveSatellite()">Scan Area</button>
+
+  <script>
+    const satellite = document.getElementById('satellite');
+    let x = 10, y = 10;
+
+    function moveSatellite() {
+      x += 40;
+      if (x > 360) {
+        x = 10;
+        y += 40;
+      }
+      if (y > 360) {
+        x = 10;
+        y = 10;
+      }
+      satellite.style.left = x + 'px';
+      satellite.style.top = y + 'px';
+    }
+  </script>
+</body>
+</html>
